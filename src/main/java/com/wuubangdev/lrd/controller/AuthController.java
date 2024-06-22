@@ -31,7 +31,8 @@ public class AuthController {
 	private final UserService userService;
 	private final PasswordEncoder passwordEncoder;
 
-	public AuthController(AuthenticationManagerBuilder authenticationManagerBuilder, SecurityUtil securityUtil, JwtUtil jwtUtil, UserService userService, PasswordEncoder passwordEncoder) {
+	public AuthController(AuthenticationManagerBuilder authenticationManagerBuilder, SecurityUtil securityUtil,
+			JwtUtil jwtUtil, UserService userService, PasswordEncoder passwordEncoder) {
 		this.authenticationManagerBuilder = authenticationManagerBuilder;
 		this.securityUtil = securityUtil;
 		this.jwtUtil = jwtUtil;
@@ -191,8 +192,6 @@ public class AuthController {
 		if (curentUser != null)
 			throw new CheckExistException(
 					"Email " + user.getEmail() + " đã tồn tại vui lòng chọn email khác.");
-		String password = this.passwordEncoder.encode(user.getPassword());
-		user.setPassword(password);
 		User createdUser = this.userService.create(user);
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(this.userService.convertAfterCreate(createdUser));

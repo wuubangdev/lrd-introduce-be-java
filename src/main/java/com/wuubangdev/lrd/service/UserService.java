@@ -89,7 +89,6 @@ public class UserService {
 		return user;
 	}
 
-
 	public void updateUserToken(String refreshToken, String email) {
 		User currentUser = this.userRepository.findByEmail(email);
 		if (currentUser != null) {
