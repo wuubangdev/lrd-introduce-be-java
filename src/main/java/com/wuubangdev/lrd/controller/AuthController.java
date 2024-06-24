@@ -29,7 +29,6 @@ public class AuthController {
 	private final SecurityUtil securityUtil;
 	private final JwtUtil jwtUtil;
 	private final UserService userService;
-	private final PasswordEncoder passwordEncoder;
 
 	public AuthController(AuthenticationManagerBuilder authenticationManagerBuilder, SecurityUtil securityUtil,
 			JwtUtil jwtUtil, UserService userService, PasswordEncoder passwordEncoder) {
@@ -37,7 +36,6 @@ public class AuthController {
 		this.securityUtil = securityUtil;
 		this.jwtUtil = jwtUtil;
 		this.userService = userService;
-		this.passwordEncoder = passwordEncoder;
 	}
 
 	@PostMapping("/auth/login")
