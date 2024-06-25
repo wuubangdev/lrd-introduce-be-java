@@ -3,6 +3,7 @@ package com.wuubangdev.lrd.util;
 import com.wuubangdev.lrd.domain.response.RestResponse;
 import com.wuubangdev.lrd.util.anotation.ApiMessage;
 import org.springframework.core.MethodParameter;
+import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
@@ -33,8 +34,7 @@ public class CustomResponse implements ResponseBodyAdvice<Object> {
 		RestResponse<Object> res = new RestResponse<Object>();
 		res.setStatusCode(status);
 
-		if (body instanceof String
-//				|| body instanceof Resource
+		if (body instanceof String || body instanceof Resource
 		) {
 			return body;
 		}
