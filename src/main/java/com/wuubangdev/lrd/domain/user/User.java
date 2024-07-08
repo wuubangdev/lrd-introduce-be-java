@@ -25,17 +25,17 @@ public class User {
 	private String name;
 	private UserGender gender;
 	private Instant birthDay;
-	private String born; //Noi sinh
+	private String born; // Noi sinh
 	private String address;
-	private String position; //Chuc vu
-	private String office; //Vi tri lam viec
-	private String civilServants; //Ngach vien chuc
+	private String position; // Chuc vu
+	private String office; // Vi tri lam viec
+	private String civilServants; // Ngach vien chuc
 	private int yearExp;
 	private String level;
 	@Column(columnDefinition = "MEDIUMTEXT")
-	private String trainingProcess; //Qua trinh dao tao
+	private String trainingProcess; // Qua trinh dao tao
 	@Column(columnDefinition = "MEDIUMTEXT")
-	private String workingProcess; //Qua trinh dao tao
+	private String workingProcess; // Qua trinh lam viec
 
 	@ManyToOne
 	@JoinColumn(name = "role_id")
