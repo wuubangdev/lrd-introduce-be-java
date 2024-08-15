@@ -4,6 +4,7 @@ import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import com.wuubangdev.lrd.util.JwtUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -38,11 +39,11 @@ public class SecurityConfig {
 			HttpSecurity http,
 			CustomAuthenticationEntryPoint customAuthenticationEntryPoint)
 			throws Exception {
-		String[] whiteList = {"/", "/storage/**",
+		String[] whiteList = { "/", "/storage/**",
 				"/api/v1/auth/login", "/api/v1/auth/refresh", "/api/v1/auth/register",
-//                "/v3/api-docs/**",
-//                "/swagger-ui/**",
-//                "/swagger-ui.html",
+				// "/v3/api-docs/**",
+				// "/swagger-ui/**",
+				// "/swagger-ui.html",
 		};
 		http
 				.csrf(AbstractHttpConfigurer::disable)
@@ -51,8 +52,9 @@ public class SecurityConfig {
 						authorize -> authorize
 								.requestMatchers(whiteList)
 								.permitAll()
-								.anyRequest().authenticated()
-				)
+								.requestMatchers(HttpMethod.GET, "/api/v1/staffs")
+								.permitAll()
+								.anyRequest().authenticated())
 				.oauth2ResourceServer(oauth2 -> oauth2
 						.jwt(Customizer.withDefaults())
 						.authenticationEntryPoint(customAuthenticationEntryPoint))

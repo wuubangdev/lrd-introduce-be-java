@@ -79,7 +79,6 @@ public class AuthController {
 				.maxAge(this.jwtUtil.getRefreshExpiration())
 				.path("/")
 				.build();
-
 		return ResponseEntity
 				.ok()
 				.header(HttpHeaders.SET_COOKIE, responseCookie.toString())
